@@ -582,7 +582,7 @@ TVH_SetState(HTV, ItemID, States*) { ; TVM_SETITEMW : TVM_SETITEMA
       , NumPut(ItemID, TVIX, PtrSize, PtrType) ; hItem
       , NumPut(State, TVIX, PtrSize * 2, "UInt")
       , NumPut(StateMask, TVIX, (PtrSize * 2) + 4, "UInt")
-      , PtrTVIX := Remote ? RMO.Addr &TVIX
+      , PtrTVIX := Remote ? RMO.Addr : &TVIX
       If (Remote)
          RMO.Put(TVIX, 0, SizeOfTVIX)
       Return DllCall("SendMessage", "Ptr", HTV, "UInt", A_IsUnicode ? 0x113F : 0x110D, "Ptr", 0, "Ptr", PtrTVIX, "UInt")
